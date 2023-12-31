@@ -6,9 +6,13 @@ package myappexamtp;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 import configs.MyConnexion;
+import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -222,16 +226,11 @@ public class fenetrevol extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
 
-        
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-  
-        
-        
+    
+         
     }//GEN-LAST:event_jButton2ActionPerformed
  
      

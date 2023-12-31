@@ -1,3 +1,14 @@
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -156,7 +167,34 @@ public class fenetreaeroport extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            String nom =   jTextField1.getText();
+            String pays =   jTextField2.getText();
+             
+            
+            String url = "jdbc:mysql://localhost:3306/fly?characterEncoding=UTF-8";
+         String login ="root";
+         String pwd= "";
+        
+         try {
+        Connection connection = (Connection) DriverManager.getConnection(url, login, pwd);
+        String sql = "INSERT INTO aeroport (nom, pays) VALUES (?, ?)";
+
+        try (PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, nom);
+            preparedStatement.setString(2, pays);
+
+            // Execute the update
+            preparedStatement.executeUpdate();
+
+            // Optionally, display a success message
+            JOptionPane.showMessageDialog(this, "Airport information added successfully.");
+        }
+
+    } catch (SQLException ex) {
+        Logger.getLogger(fenetreaeroport.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+            
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

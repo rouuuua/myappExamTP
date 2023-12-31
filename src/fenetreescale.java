@@ -1,3 +1,12 @@
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -84,6 +93,11 @@ public class fenetreescale extends javax.swing.JFrame {
         });
 
         jButton2.setText("Envoier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,6 +188,42 @@ public class fenetreescale extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      
+        
+            String aeroportNom =   jTextField1.getText();
+            String heureArrivee =   jTextField2.getText();
+            String heureDepart =   jTextField3.getText();
+
+            
+            String url = "jdbc:mysql://localhost:3306/fly?characterEncoding=UTF-8";
+         String login ="root";
+         String pwd= "";
+        
+         try {
+        Connection connection = (Connection) DriverManager.getConnection(url, login, pwd);
+        String sql = "INSERT INTO escale (aeroportNom, heureArrivee,heureDepart) VALUES (?, ?,?)";
+
+        try (PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, aeroportNom);
+            preparedStatement.setString(2, heureArrivee);
+            preparedStatement.setString(3, heureDepart);
+
+            // Execute the update
+            preparedStatement.executeUpdate();
+
+            // Optionally, display a success message
+            JOptionPane.showMessageDialog(this, "Escale information added successfully.");
+        }
+
+    } catch (SQLException ex) {
+        Logger.getLogger(fenetreescale.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+            
+    
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
