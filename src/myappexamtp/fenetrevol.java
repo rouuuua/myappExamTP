@@ -7,6 +7,8 @@ package myappexamtp;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import configs.MyConnexion;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
@@ -227,11 +229,13 @@ public class fenetrevol extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      String aeroportDepart = jTextField1.getText();  
-       
-     
+  
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
-
+ 
+     
+    
     /**
      * @param args the command line arguments
      */

@@ -71,4 +71,8 @@ public class MyConnexion {
     public static Connection getConnection() {
         return connection;
     }    
+
+    public com.mysql.jdbc.Connection getConnexion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
