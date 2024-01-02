@@ -205,7 +205,15 @@ public class fenetrerechercher extends javax.swing.JFrame {
                     .append("Heure de départ : ").append(resultSet.getString("heureDepart")).append("\n")
                     .append("Heure d'arrivée : ").append(resultSet.getString("heureArrivee")).append("\n")
                     .append("------------------------------\n");
+        
         }
+        
+        
+          fenetreafficher fenetreAfficher = new fenetreafficher();
+            fenetreAfficher.afficherResultats(resultStringBuilder.toString());
+            fenetreAfficher.setVisible(true);
+        
+        
         System.out.println(resultStringBuilder.toString());
     } catch (SQLException ex) {
         ex.printStackTrace();
