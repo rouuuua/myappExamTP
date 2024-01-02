@@ -266,6 +266,9 @@ public class fenetrevol extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
+         jTextField7.setText("");
+
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
