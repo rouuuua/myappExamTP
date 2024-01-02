@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -16,13 +17,23 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
+
+
 public class fenetrevol extends javax.swing.JFrame {
+private fenetresuppression fenetreSuppression; 
+private javax.swing.JList<String> jList1;
+private DefaultListModel<String> listModel;
 
     /**
      * Creates new form fenetrevol
      */
     public fenetrevol() {
         initComponents();
+    listModel = new DefaultListModel<>();
+    jList1 = new javax.swing.JList<>(listModel);
+    jPanel1.add(jList1);
+    fenetreSuppression = new fenetresuppression(); // Instancier FenetreSupprimer ici
+
     }
 
     /**
@@ -111,6 +122,11 @@ public class fenetrevol extends javax.swing.JFrame {
         jLabel8.setText("nomPay");
 
         jButton3.setText("Supprimer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,7 +275,8 @@ public class fenetrevol extends javax.swing.JFrame {
     }
 
         
-        
+         String volInfo = aeroportDepart + " - " + aeroportArrivee + " - " + dateDepart + " - " + heureDepart;
+    listModel.addElement(volInfo);
         
         
         
@@ -281,6 +298,18 @@ public class fenetrevol extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+           int selectedIndex = jList1.getSelectedIndex();
+    if (selectedIndex != -1) {
+        listModel.remove(selectedIndex);
+        // Afficher la JFrame fenetresuppression après la suppression
+        fenetreSuppression.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un vol à supprimer.", "Avertissement", JOptionPane.WARNING_MESSAGE);
+    }        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

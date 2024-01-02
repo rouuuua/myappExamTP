@@ -7,13 +7,14 @@
  *
  * @author user
  */
-public class fenetresupprision extends javax.swing.JFrame {
+public class fenetresuppression extends javax.swing.JFrame {
 
     /**
      * Creates new form fenetresupprision
      */
-    public fenetresupprision() {
+    public fenetresuppression() {
         initComponents();
+         setVisible(false);
     }
     
     
@@ -161,20 +162,23 @@ private void supprimerVol(String vol) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fenetresupprision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fenetresuppression.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fenetresupprision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fenetresuppression.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fenetresupprision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fenetresuppression.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fenetresupprision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fenetresuppression.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fenetresupprision().setVisible(true);
+                new fenetresuppression().setVisible(true);
             }
         });
     }
