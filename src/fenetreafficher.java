@@ -17,7 +17,11 @@ import java.sql.ResultSet;
 public class fenetreafficher extends javax.swing.JFrame {
 
      public void afficherResultats(String resultats) {
+        if (jTextArea1 != null) {
+            jTextArea1.setText(resultats);
+             System.out.println("Affichage des résultats : " + resultats);
         jTextArea1.setText(resultats);
+        }
     }
    
     /**

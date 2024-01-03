@@ -186,7 +186,7 @@ public class fenetrerechercher extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
  private void performSearch(String nomPay, String dateDepart) {
-    String sql = "SELECT aeroportDepart, aeroportArrivee, dateArrivee, heureDepart, heureArrivee FROM vol WHERE nomPay = ? AND dateDepart = ?";
+    String sql = "SELECT aeroportDepart, aeroportArrivee, dateArrivee, heureDepart, heureArrivee, nombreEscales, aeroportNom FROM vol WHERE nomPay = ? AND dateDepart = ?";
     StringBuilder resultStringBuilder = new StringBuilder();
 
     try (Connection connection = DriverManager.getConnection(url, login, pwd);
@@ -204,6 +204,9 @@ public class fenetrerechercher extends javax.swing.JFrame {
                     .append("Date d'arrivée : ").append(resultSet.getString("dateArrivee")).append("\n")
                     .append("Heure de départ : ").append(resultSet.getString("heureDepart")).append("\n")
                     .append("Heure d'arrivée : ").append(resultSet.getString("heureArrivee")).append("\n")
+                    .append("Nomber Escales : ").append(resultSet.getString("nombreEscales")).append("\n")
+                    .append("Aeroport Nom: ").append(resultSet.getString("aeroportNom")).append("\n")
+
                     .append("------------------------------\n");
         
         }
