@@ -7,7 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -20,9 +21,10 @@ import javax.swing.JOptionPane;
 
 
 public class fenetrevol extends javax.swing.JFrame {
-private fenetresuppression fenetreSuppression; 
 private javax.swing.JList<String> jList1;
 private DefaultListModel<String> listModel;
+private javax.swing.JButton jButtonSupprimer;
+
 
     /**
      * Creates new form fenetrevol
@@ -32,8 +34,28 @@ private DefaultListModel<String> listModel;
     listModel = new DefaultListModel<>();
     jList1 = new javax.swing.JList<>(listModel);
     jPanel1.add(jList1);
-    fenetreSuppression = new fenetresuppression(); // Instancier FenetreSupprimer ici
+ // Créez et ajoutez le bouton "Supprimer"
+        jButtonSupprimer = new javax.swing.JButton();
+        jButtonSupprimer.setText("Supprimer");
+        jButtonSupprimer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code à exécuter lors du clic sur le bouton "Supprimer"
+                afficherFenetreSuppression();
+            }
+        });
 
+        jPanel1.add(jButtonSupprimer);
+
+    
+    
+    
+    
+    }
+     // Ajoutez cette méthode pour afficher la fenêtre de suppression
+    private void afficherFenetreSuppression() {
+       fenetreSupprimer fenetreSuppression = new fenetreSupprimer(listModel);
+        fenetreSuppression.setVisible(true);
     }
 
     /**
@@ -64,6 +86,10 @@ private DefaultListModel<String> listModel;
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +147,25 @@ private DefaultListModel<String> listModel;
 
         jLabel8.setText("nomPay");
 
+        jLabel9.setText("nombreEscales");
+        jLabel9.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel9AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("aeroportNom");
+
         jButton3.setText("Supprimer");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,9 +179,6 @@ private DefaultListModel<String> listModel;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(27, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -155,9 +197,9 @@ private DefaultListModel<String> listModel;
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(83, 83, 83)
                                 .addComponent(jButton3)
-                                .addGap(27, 27, 27))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(108, 108, 108)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,11 +209,19 @@ private DefaultListModel<String> listModel;
                                     .addComponent(jTextField3)
                                     .addComponent(jTextField6)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(280, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addComponent(jLabel8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -208,7 +258,15 @@ private DefaultListModel<String> listModel;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
@@ -243,6 +301,9 @@ private DefaultListModel<String> listModel;
         String heureDepart =  jTextField5.getText();
         String heureArrivee =  jTextField6.getText();
         String nomPay =  jTextField7.getText();
+        String nombreEscales =  jTextField8.getText();
+        String aeroportNom =  jTextField9.getText();
+        
 
             
             String url = "jdbc:mysql://localhost:3306/fly?characterEncoding=UTF-8";
@@ -251,7 +312,7 @@ private DefaultListModel<String> listModel;
         
          try {
         Connection connection = (Connection) DriverManager.getConnection(url, login, pwd);
-        String sql = "INSERT INTO vol (aeroportDepart, aeroportArrivee,dateDepart,dateArrivee,heureDepart,heureArrivee,nomPay) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vol (aeroportDepart, aeroportArrivee,dateDepart,dateArrivee,heureDepart,heureArrivee,nomPay,nombreEscales,aeroportNom) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
 
         try (PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql)) {
             preparedStatement.setString(1, aeroportDepart);
@@ -261,14 +322,21 @@ private DefaultListModel<String> listModel;
             preparedStatement.setString(5, heureDepart);
             preparedStatement.setString(6, heureArrivee);
             preparedStatement.setString(7, nomPay);
+            preparedStatement.setString(8, nombreEscales);
+            preparedStatement.setString(9, aeroportNom);
 
             // Execute the update
             preparedStatement.executeUpdate();
 
             // Optionally, display a success message
             JOptionPane.showMessageDialog(this, "Vol information added successfully.");
+  
         }
-
+        
+ DisplayVolTable displayVolTable = new DisplayVolTable();
+    displayVolTable.setVisible(true);
+    
+    
     } catch (SQLException ex) {
         Logger.getLogger(fenetrevol.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(this, "Error saving data in the database", "Error", JOptionPane.ERROR_MESSAGE);
@@ -277,6 +345,7 @@ private DefaultListModel<String> listModel;
         
          String volInfo = aeroportDepart + " - " + aeroportArrivee + " - " + dateDepart + " - " + heureDepart;
     listModel.addElement(volInfo);
+    
         
         
         
@@ -293,22 +362,25 @@ private DefaultListModel<String> listModel;
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
-         jTextField7.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
 
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jLabel9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel9AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9AncestorAdded
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-           int selectedIndex = jList1.getSelectedIndex();
-    if (selectedIndex != -1) {
-        listModel.remove(selectedIndex);
-        // Afficher la JFrame fenetresuppression après la suppression
-        fenetreSuppression.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un vol à supprimer.", "Avertissement", JOptionPane.WARNING_MESSAGE);
-    }        
+        afficherFenetreSuppression();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -351,6 +423,7 @@ private DefaultListModel<String> listModel;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -358,6 +431,7 @@ private DefaultListModel<String> listModel;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
@@ -367,5 +441,7 @@ private DefaultListModel<String> listModel;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
