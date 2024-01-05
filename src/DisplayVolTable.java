@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 
 
@@ -20,14 +22,50 @@ import java.sql.SQLException;
  */
 public class DisplayVolTable extends javax.swing.JFrame {
 
+     private int selectedRowIndex = -1;
+    
     /**
      * Creates new form DisplayVolTable
      */
     public DisplayVolTable() {
         initComponents();
         displayVolData();
+          addRowSelectionListener();
+            // Ajoutez le code pour initialiser le bouton "Modifier"
+        jButton1 = new javax.swing.JButton();
+        jButton1.setText("Modifier");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        
+        // Ajoutez le bouton à votre conteneur (par exemple, jPanel1)
+        jPanel1.add(jButton1);
+    }
+    
+
+    
+    
+    
+    
+
+    
+     
+     private void addRowSelectionListener() {
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    selectedRowIndex = jTable1.getSelectedRow();
+                }
+            }
+        });
     }
 
+     
+     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +80,7 @@ public class DisplayVolTable extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +131,16 @@ public class DisplayVolTable extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 102));
+        jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Modifer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,11 +148,14 @@ public class DisplayVolTable extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(303, 303, 303)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,9 +163,11 @@ public class DisplayVolTable extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(46, 46, 46)
+                .addComponent(jButton1)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,8 +176,7 @@ public class DisplayVolTable extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(106, 106, 106))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,6 +189,64 @@ public class DisplayVolTable extends javax.swing.JFrame {
     private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+          if (selectedRowIndex != -1) {
+            // Récupérer les données de la ligne sélectionnée
+            String aeroportDepart = jTable1.getValueAt(selectedRowIndex, 0).toString();
+            String aeroportArrivee = jTable1.getValueAt(selectedRowIndex, 1).toString();
+            // Continuez de cette manière pour les autres colonnes
+
+            // Afficher une boîte de dialogue ouvrir un formulaire de modification
+            showModificationDialog(aeroportDepart, aeroportArrivee);
+        } else {
+            JOptionPane.showMessageDialog(this, "Veuillez sélectionner une ligne à modifier.", "Aucune ligne sélectionnée", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void showModificationDialog(String aeroportDepart, String aeroportArrivee) {
+        // Ici, vous pouvez créer une nouvelle JFrame ou utiliser JOptionPane
+        // pour afficher un formulaire de modification avec les données récupérées.
+        // Par exemple :
+        JTextField textFieldAeroportDepart = new JTextField(aeroportDepart);
+        JTextField textFieldAeroportArrivee = new JTextField(aeroportArrivee);
+        // Ajoutez d'autres champs pour les autres colonnes
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(new JLabel("Aeroport Depart:"));
+        panel.add(textFieldAeroportDepart);
+        panel.add(new JLabel("Aeroport Arrivee:"));
+        panel.add(textFieldAeroportArrivee);
+        // Ajoutez d'autres champs au panel
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "Modifier les données",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            // Récupérez les nouvelles valeurs des champs et mettez à jour la base de données
+            String newAeroportDepart = textFieldAeroportDepart.getText();
+            String newAeroportArrivee = textFieldAeroportArrivee.getText();
+            // Mettez à jour les autres colonnes de la même manière
+
+            // Exécutez la mise à jour dans la base de données ici
+
+            // Mettez à jour la JTable avec les nouvelles données
+            updateTable();
+        }
+    }
+
+    private void updateTable() {
+        // Mettez à jour la JTable avec les données actualisées de la base de données
+        displayVolData();
+    
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +284,7 @@ public class DisplayVolTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

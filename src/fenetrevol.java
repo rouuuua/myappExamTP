@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -24,6 +25,10 @@ public class fenetrevol extends javax.swing.JFrame {
 private javax.swing.JList<String> jList1;
 private DefaultListModel<String> listModel;
 private javax.swing.JButton jButtonSupprimer;
+  // Ajoutez ces champs pour représenter les composants GUI
+    private javax.swing.JTextField jTextFieldAeroportDepart;
+    private javax.swing.JTextField jTextFieldAeroportArrivee;
+    // Ajoutez d'autres champs pour les autres composants GUI
 
 
     /**
@@ -47,11 +52,24 @@ private javax.swing.JButton jButtonSupprimer;
 
         jPanel1.add(jButtonSupprimer);
 
+     initComponents();
     
-    
-    
+     jTextFieldAeroportDepart = new JTextField();
     
     }
+    
+  
+
+     
+
+    // Ajoutez cette méthode pour préremplir les champs avec les données de vol
+    public void setVolData(String aeroportDepart, String aeroportArrivee) {
+        jTextFieldAeroportDepart.setText(aeroportDepart);
+        jTextFieldAeroportArrivee.setText(aeroportArrivee);
+        // Préremplissez d'autres champs avec les données nécessaires
+    }
+    
+    
      // Ajoutez cette méthode pour afficher la fenêtre de suppression
     private void afficherFenetreSuppression() {
        fenetreSupprimer fenetreSuppression = new fenetreSupprimer(listModel);
